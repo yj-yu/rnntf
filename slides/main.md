@@ -1092,7 +1092,7 @@ void sysctl_sched_kobjed(&watchdalleep_state, int sys_timk_ops, *mask, struct fi
 ## More results
 - Latex generation. The resulting sampled Latex almost compiles.
 
-.center.img-100[![](images/rl/sk-logo.png)]
+.center.img-100[![](images/rl/latex4.png)]
 
 .footnote[(Image credit: Karpathy’s blog)]
 ---
@@ -1103,7 +1103,7 @@ template: inverse
 # Practice : (Korean) Novel Writer (Char RNN)
 
 ### .x-small[4_kor_char_rnn_train.ipynb, 4_kor_char_rnn_inference.ipynb]
-.sklogobg[ ![Sklogo](images/latex4.png) ]
+.sklogobg[ ![Sklogo](images/sk-logo.png) ]
 
 ---
 
@@ -1479,7 +1479,7 @@ if ckpt and ckpt.model_checkpoint_path:
 ```
 ---
 ## Inference Result
-- Step 2500, loss 1.391
+- Step 2500
 
 ```
 투명드래곤 선봇랐터 조노 눅웅가다 가다망어흔 
@@ -1498,6 +1498,26 @@ if ckpt and ckpt.model_checkpoint_path:
 
 셰복 막5ㅋ~ㄹㅋㄱ 바터리자기짬툐 투명드래곤았본비잇다
 야 처차들을 이개이사 하누빠니리 실낵나가 함산의 지치 망"
+```
+---
+## Inference Result
+- Step 7000
+
+```
+투명드래곤이 이버네요 향마신아코 본해서랄투명드래곤하고 자힐을었다
+
+"케케케케"
+바겹지가 적대시 쪼 굓굖
+
+하지묀... 
+
+나항 졸라 중남을 쳐참다
+쾰여냐! 넌 니제 고치돵이로 날아조함네 굖굖교 
+
+"이전. 제계볼뽀태 이죄가끄케"
+퐈싼히하들만 투명드래곤이...
+
+꼐속 
 ```
 
 ---
@@ -1561,7 +1581,7 @@ class: center, middle, no-number
 
 <div style="position:absolute; left:0; bottom:20px; padding: 25px;">
   <p class="left" style="margin:0; font-size: 13pt;">
-  <b>Special Thanks to</b>: Byeongchang Kim, Jongwook Choi, Cesc Park</p>
+  <b>Special Thanks to</b>: Byeongchang Kim, Jongwook Choi, Cesc Park, Sungjoon Choi </p>
 </div>
 
 .footnote[Slideshow created using [remark](http://github.com/gnab/remark).]
