@@ -527,21 +527,6 @@ init = tf.initialize_all_variables()
 
 ```
 ---
-```python
-# Write logs at every iteration
-*summary_writer = tf.train.SummaryWriter(logs_path, graph=tf.get_default_graph())
-
-while step * batch_size < training_iters:
-  # Calculate batch loss
-*  loss, acc, summary = sess.run([cost, accuracy, merged_summary_op], \
-*    feed_dict={x: batch_x, y: batch_y})
-
-  # Write logs at every iteration
-*  summary_writer.add_summary(summary, step)
-```
-
-
----
 
 
 template: inverse

@@ -566,8 +566,6 @@ template: inverse
 
 ##Difficulty of training RNNs
 
-.center.img-70[![](images/longhard/eq9.png)]
-<center style="font-size:20px">Eq. Exploding and Vanishing Gradients</center>
 </br>
 - For RNN training, gradients can be exploding or vanishing.
 <br>
