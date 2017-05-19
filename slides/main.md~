@@ -7,7 +7,7 @@ class: titlepage, no-number
 
 # Recurrent Neural Network using TensorFlow
 ## .gray.author[Youngjae Yu]
-### .gray.small[May 18, 2017]
+### .gray.small[May 19, 2017]
 ### .x-small[https://yj-yu.github.io/rnntf]
 .sklogobg[ ![Sklogo](images/sk-logo.png) ]
 
