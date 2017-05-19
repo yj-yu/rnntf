@@ -565,39 +565,9 @@ template: inverse
 ---
 
 ##Difficulty of training RNNs
-.center.img-85[![](images/longhard/eq4.png)]
-<center style="font-size:20px">Fig. Unrolling RNNs in time by creating a copy of the model for each time step</center>
+
 </br>
-.img-22[![](images/longhard/eq5.png)] 
-<br>
-.img-36[![](images/longhard/eq6.png)] &nbsp; &nbsp; &nbsp; 
-.img-25[![](images/longhard/eq7.png)]
-
----
-
-##Difficulty of training RNNs
-<!--.center[$\frac{\partial \mathcal{E}_{t}}{\partial \theta} = \sum_{1}^{n}$] -->
-.center.img-70[![](images/longhard/eq8.png)]
-
-
-<center style="font-size:20px">Eq. Temporal Contributions</center>
-</br>
-- This Equation shows that how $\theta$ at step $k$ affects the cost at step $t>k$.
-<br>
-
-- The factors $\frac{\partial x_t}{\partial x_k}$ transport the error "in time" from step $t$ back to step $k$.
-
-- We called it **long term** for which $k \ll t$.
-</br>
-
----
-
-##Difficulty of training RNNs
-<!--.center[$\frac{\partial \mathcal{E}_{t}}{\partial \theta} = \sum_{1}^{n}$] -->
-.center.img-70[![](images/longhard/eq9.png)]
-<center style="font-size:20px">Eq. Exploding and Vanishing Gradients</center>
-</br>
-- For **long term** this equations show that gradients can be exploding or vanishing.
+- For RNN training, gradients can be exploding or vanishing.
 <br>
 .center.img-75[![](images/longhard/eq10.png)]
 
