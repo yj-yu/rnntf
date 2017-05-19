@@ -95,13 +95,6 @@ template: inverse
 
 
 ---
-## RNN Basics
-
-.center.img-80[![](images/rl/rnn10.png)]
-
-.footnote[(Image credit: WildML)]
-
----
 ##RNN Basic
 .center.img-100[![rnn_cs231n](images/rnn/11.png)]
 
@@ -126,56 +119,6 @@ template: inverse
 .center.img-100[![rnn_cs231n](images/rnn/16.png)]
 
 ---
-##RNN Python
-
-###https://goo.gl/5npVuw
-
-.center.img-100[![rnn_cs231n](images/rnn/17.png)]
-
-
-
----
-##RNN Python
-.center.img-100[![rnn_cs231n](images/rnn/18.png)]
-
----
-##RNN Python
-.center.img-100[![rnn_cs231n](images/rnn/19.png)]
-
----
-##RNN Python
-.center.img-100[![rnn_cs231n](images/rnn/20.png)]
-
----
-##RNN Python
-.center.img-100[![rnn_cs231n](images/rnn/21.png)]
-
----
-##RNN Python
-.center.img-100[![rnn_cs231n](images/rnn/22.png)]
-
----
-##RNN Python
-.center.img-100[![rnn_cs231n](images/rnn/23.png)]
-
----
-##RNN Python
-.center.img-100[![rnn_cs231n](images/rnn/24.png)]
-
----
-##RNN Python
-.center.img-100[![rnn_cs231n](images/rnn/25.png)]
-
----
-##RNN Python
-.center.img-100[![rnn_cs231n](images/rnn/26.png)]
-
----
-##RNN Python
-.center.img-100[![rnn_cs231n](images/rnn/27.png)]
-
----
-
 ### Time step and Batch
 - Time steps are defined by **sequences length**
 - The batch size is defined by **user**
@@ -421,11 +364,11 @@ init = tf.initialize_all_variables()
 
 
 
-## [Tensorflow APIs](https://www.tensorflow.org/versions/r0.11/api_docs/python/index.html)
+## [Tensorflow APIs](https://www.tensorflow.org/api_docs/)
 
-## [Tensorflow tutorials](https://www.tensorflow.org/versions/r0.11/tutorials/index.html)
+## [Tensorflow tutorials](https://www.tensorflow.org/tutorials/)
 
-## [RNN tutorials](https://www.tensorflow.org/versions/r0.11/tutorials/recurrent/index.html)
+## [RNN tutorials](https://www.tensorflow.org/tutorials/recurrent)
 ---
 
 
@@ -508,7 +451,10 @@ template: inverse
 
 .center.img-45[![](images/mnist.png)]
 ---
+## MNIST Dataset
 
+.center.img-90[![](images/rl/RNN-truncated-input-output.png)]
+---
 
 template: inverse
 
@@ -571,13 +517,13 @@ accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
 init = tf.initialize_all_variables()
 
 # Create a summary to monitor cost tensor
-*tf.scalar_summary("loss", cost)
+*tf.summary.scalar("loss", cost)
 
 # Create a summary to monitor accuracy tensor
-*tf.scalar_summary("accuracy", accuracy)
+*tf.summary.scalar("accuracy", accuracy)
 
 # Merge all summaries into a single op
-*merged_summary_op = tf.merge_all_summaries()
+*merged_summary_op = tf.summary.merge_all()
 
 ```
 ---
@@ -703,74 +649,6 @@ optim = optimizer.apply_gradients(clipped_grads_and_vars, global_step=self.globa
 
 ---
 
-## RNN vs. Dynamic RNN
-
-- tf.nn.rnn creates an unrolled graph for a fixed RNN length
-  - e.g. creating static graph with 200 RNN steps
-  - 1) graph creation is slow
-  - 2) unable to pass longer sequences (>200) than originally specified
-
-- tf.nn.dynamic_rnn solves this!
-  - Internally use tf.While to dynamically construct the graph
-  - 1) faster creation
-  - 2) can feed batches of variable size
-
-In short, .red[just use tf.nn.dynamic_rnn.]
-
----
-
-.rnn_basic[![rnn_basic7](images/rnn_basic/7.png) ]
-
-
----
-## Dynamic RNN
-
-```python
-# Create input data
-X = np.random.randn(2, 10, 8)
-
-# The second example is of length 6
-X[1,6:] = 0
-X_lengths = [10,6]
-
-cell = tf.contrib.rnn.LSTMCell(num_units=64, state_is_tuple=True)
-
-*outputs, last_states = tf.nn.dynamic_rnn( 
-*    cell=cell, 
-*    dtype=tf.float64, 
-*    sequence_length=X_lengths, 
-*    inputs=X)
-
-result = tf.contrib.learn.run_n(
-    {"outputs":outputs, "last_states": last_states},
-    n=1,
-    feed_dict=None)
-```
----
-## Bidirectional Dynamic RNN
-
-```python
-# Create input data
-X = np.random.randn(2, 10, 8)
-
-# The second example is of length 6
-X[1,6:] = 0
-X_lengths = [10,6]
-
-cell = tf.contrib.rnn.LSTMCell(num_units=64, state_is_tuple=True)
-
-*outputs, last_states = tf.nn.bidirectional_dynamic_rnn( 
-*    cell_fw=cell, 
-*    cell_bw=cell,
-     dtype=tf.float64, 
-     sequence_length=X_lengths, 
-     inputs=X)
-
-output_fw, output_bw = outputs
-states_fw, states_bw = states
-```
----
-
 template: inverse
 
 # Practice : character Level RNN
@@ -779,10 +657,7 @@ template: inverse
 .sklogobg[ ![Sklogo](images/sk-logo.png) ]
 
 ---
-
-## Make code generate code!
----
-## More results
+## Algorithm mimics linux kernel code
 - Char RNN architecture
 
 .center.img-50[![](images/rl/crnn.png)]
@@ -1203,7 +1078,7 @@ print (text_file)
 - Generate "vocab.pkl" and "data.npy"
 
 ```python
-data_dir    = "data/nine_dreams"
+data_dir    = "data/invisible_dragon"
 batch_size  = 50
 seq_length  = 50
 data_loader = TextLoader(data_dir, batch_size, seq_length)
@@ -1220,8 +1095,8 @@ Load preprocessed dataset with text loader
 corpus_name = "invisible_dragon" # "nine_dreams"
 
 data_dir    = "data/" + corpus_name
-batch_size  = 50
-seq_length  = 50
+batch_size  = 10
+seq_length  = 100
 data_loader = TextLoader(data_dir, batch_size, seq_length)
 
 ```
@@ -1333,10 +1208,10 @@ print ("NETWORK READY")
 
 ```python
 
-num_epochs    = 500
-save_every    = 50
-learning_rate = 0.0002
-decay_rate    = 0.97
+num_epochs    = 5000
+save_every    = 500
+learning_rate = 0.001
+decay_rate    = 0.999
 
 save_dir = 'data/' + corpus_name
 sess = tf.InteractiveSession()
@@ -1388,8 +1263,8 @@ Set corpus name
 ```python
 corpus_name = "invisible_dragon" # "nine_dreams
 data_dir    = "data/" + corpus_name
-batch_size  = 50
-seq_length  = 50
+batch_size  = 10
+seq_length  = 100
 data_loader = TextLoader(data_dir, batch_size, seq_length)
 # This makes "vocab.pkl" and "data.npy" in "data/nine_dreams"   
 #  from "data/nine_dreams/input.txt" 
@@ -1453,7 +1328,7 @@ print ("sampling function done.")
 
 ```python
 save_dir = 'data/' + corpus_name
-prime = decompose_text(u"누구 ")
+*prime = decompose_text(u"투명드래곤 ")
 
 print ("Prime Text : %s => %s" % (automata(prime), "".join(prime)))
 n = 4000
@@ -1553,17 +1428,6 @@ if ckpt and ckpt.model_checkpoint_path:
 
 ```
 
-
-
----
-
-
-template: inverse
-
-# Let's Do It
-
-### .x-small[1_practice_rnn.ipynb]
-.sklogobg[ ![Sklogo](images/sk-logo.png) ]
 
 ---
 
