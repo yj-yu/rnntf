@@ -7,9 +7,9 @@ class: titlepage, no-number
 
 # Recurrent Neural Network using TensorFlow
 ## .gray.author[Youngjae Yu]
-### .gray.small[May 19, 2017]
+### .gray.small[Aug 2, 2017]
 ### .x-small[https://yj-yu.github.io/rnntf]
-.sklogobg[ ![Sklogo](images/sk-logo.png) ]
+.bottom.center.img-66[ ![](images/snu-logo.png) ]
 
 ---
 layout: false
@@ -245,7 +245,7 @@ template: inverse
 
 # Tensorflow Basics
 
-.sklogobg[ ![Sklogo](images/sk-logo.png) ]
+.sklogobg[ ![Sklogo](images/snu-logo.png) ]
 
 ---
 ## Tensorflow Basics
@@ -376,7 +376,7 @@ template: inverse
 
 # Tensorflow APIs for RNN
 
-.sklogobg[ ![Sklogo](images/sk-logo.png) ]
+.sklogobg[ ![Sklogo](images/snu-logo.png) ]
 
 ---
 #RNN Cells
@@ -435,7 +435,7 @@ template: inverse
 # Let's Do It
 
 ### .x-small[1_practice_rnn.ipynb]
-.sklogobg[ ![Sklogo](images/sk-logo.png) ]
+.sklogobg[ ![Sklogo](images/snu-logo.png) ]
 
 ---
 
@@ -461,7 +461,7 @@ template: inverse
 # Monitoring
 ### .x-small[2_practice_monitoring.ipynb]
 
-.sklogobg[ ![Sklogo](images/sk-logo.png) ]
+.sklogobg[ ![Sklogo](images/snu-logo.png) ]
 
 ---
 
@@ -533,7 +533,7 @@ template: inverse
 
 # Advanced
 
-.sklogobg[ ![Sklogo](images/sk-logo.png) ]
+.sklogobg[ ![Sklogo](images/snu-logo.png) ]
 
 ---
 
@@ -605,7 +605,7 @@ template: inverse
 # Practice : character Level RNN
 
 ### .x-small[3_char_rnn_train.ipynb, 3_char_rnn_inference.ipynb]
-.sklogobg[ ![Sklogo](images/sk-logo.png) ]
+.sklogobg[ ![Sklogo](images/snu-logo.png) ]
 
 ---
 ## Algorithm mimics linux kernel code
