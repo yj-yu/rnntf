@@ -32,6 +32,18 @@ template: inverse
 # RNN Basics
 
 ---
+## Download first!
+
+Download lecture resources
+
+```python
+git clone git@gitlab.com:yj2218/tensorflow-rnn.git
+cd tensorflow-rnn
+jupyter notebook
+```
+
+
+---
 
 ## Recurrent Neural Networks!
 
