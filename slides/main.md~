@@ -36,11 +36,16 @@ template: inverse
 
 Download lecture resources
 
+### https://drive.google.com/open?id=0B6JnKeZoakNCUDV2TExLVm5aS0U
+
+Google Drive 링크로 다운로드 받으신 후 들어가주세요.
+되도록 메인 디렉토리 상위에 한글 경로가 없게 해 주세요. 특정 컴퓨터 환경에서는 tensorboard 실행에 문제가 생기기도 합니다. 
+
+
 ```python
-git clone git@gitlab.com:yj2218/tensorflow-rnn.git
 cd tensorflow-rnn
-pip install jupyter # 만약 이전에 설치하지 않으셨다면
-pip install matplotlib
+pip install jupyter # 만약 이전에 설치하지 않으셨다면 설치해주세
+pip install matplotlib # data를 시각화하기 위한 라이브러리입니다
 jupyter notebook
 
 ```

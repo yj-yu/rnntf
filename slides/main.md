@@ -50,6 +50,9 @@ jupyter notebook
 
 ```
 
+혹은 git이 되시는 분들은..
+### git clone https://github.com/yj-yu/tensorflow-rnn.git
+
 
 ---
 
