@@ -38,7 +38,13 @@ Download lecture resources
 
 ```python
 git clone git@gitlab.com:yj2218/tensorflow-rnn.git
+cd tensorflow-rnn
+pip install jupyter # 만약 이전에 설치하지 않으셨다면
+pip install matplotlib
+jupyter notebook
+
 ```
+
 
 ---
 
