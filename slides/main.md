@@ -7,7 +7,6 @@ class: titlepage, no-number
 
 # Recurrent Neural Network using TensorFlow
 ## .gray.author[Youngjae Yu]
-### .gray.small[Aug 2, 2017]
 ### .x-small[https://yj-yu.github.io/rnntf]
 .bottom.center.img-66[ ![](images/snu-logo.png) ]
 
@@ -23,7 +22,7 @@ layout: false
   - Practice - RNN
   - Practice - Monitoring
   - Advanced
-  - Advanced Practice - char rnn 
+  - Advanced Practice - char rnn
 
 ---
 
@@ -39,7 +38,7 @@ Download lecture resources
 ### https://drive.google.com/open?id=0B6JnKeZoakNCUDV2TExLVm5aS0U
 
 Google Drive 링크로 다운로드 받으신 후 들어가주세요.
-되도록 메인 디렉토리 상위에 한글 경로가 없게 해 주세요. 특정 컴퓨터 환경에서는 tensorboard 실행에 문제가 생기기도 합니다. 
+되도록 메인 디렉토리 상위에 한글 경로가 없게 해 주세요. 특정 컴퓨터 환경에서는 tensorboard 실행에 문제가 생기기도 합니다.
 
 
 ```python
@@ -213,7 +212,7 @@ $$
 $$
 \begin{align}
 z & = \sigma(x\_tU^z + s\_{t-1} W^z) \\\\
-r & = \sigma(x\_t U^r +s\_{t-1} W^r)\\\\ 
+r & = \sigma(x\_t U^r +s\_{t-1} W^r)\\\\
 h & = tanh(x\_t U^h + (s\_{t-1} \circ r) W^h)\\\\
 s\_t & = (1 - z) \circ h + z \circ s\_{t-1} \\\\
 \end{align}
@@ -227,7 +226,7 @@ $$
 
 ## RNN Loss and Optimization
 
-###Simple RNN 
+###Simple RNN
 .center_tex_l[
 $$
 \begin{align}
@@ -237,7 +236,7 @@ s\_t & = \tanh ( U x\_t + W s\_{t-1} ) \\\\
 $$
 ]
 
-###Cross Entropy Loss 
+###Cross Entropy Loss
 
 .center_tex_l[
 $$
@@ -598,7 +597,7 @@ template: inverse
 <!--.center[$\frac{\partial \mathcal{E}_{t}}{\partial \theta} = \sum_{1}^{n}$] -->
 ###Gradient clipping
 
-.center.img-45[![](images/longhard/eq12.png)] 
+.center.img-45[![](images/longhard/eq12.png)]
 <center style="font-size:20px">Alg. Gradient clipping</center>
 
 Simple mechanism to deal with a sudden increase in the norm of the gradients is to rescale them whenever they go over a threshold.
@@ -644,7 +643,7 @@ template: inverse
 ---
 
 ## 3_char_rnn_train.ipynb
- 
+
 - Load linux kernel code
 
 ```python
@@ -665,15 +664,15 @@ print ("Text loaded from '%s'" % (input_file))
 # First, count the number of characters
 counter = collections.Counter(data)
 count_pairs = sorted(counter.items(), key=lambda x: -x[1]) # <= Sort
-print ("Type of 'counter.items()' is %s and length is %d" 
-       % (type(counter.items()), len(counter.items()))) 
+print ("Type of 'counter.items()' is %s and length is %d"
+       % (type(counter.items()), len(counter.items())))
 for i in range(5):
     print ("[%d/%d]" % (i, 3)), # <= This comma remove '\n'
     print (list(counter.items())[i])
 
 print (" ")
-print ("Type of 'count_pairs' is %s and length is %d" 
-       % (type(count_pairs), len(count_pairs))) 
+print ("Type of 'count_pairs' is %s and length is %d"
+       % (type(count_pairs), len(count_pairs)))
 for i in range(5):
     print ("[%d/%d]" % (i, 3)), # <= This comma remove '\n'
     print (count_pairs[i])
@@ -681,7 +680,7 @@ for i in range(5):
 
 ---
 
-## Make Dictionary and Vocabulary. 
+## Make Dictionary and Vocabulary.
 
 - Map Character to digit (index)
 
@@ -689,27 +688,27 @@ for i in range(5):
 # Let's make dictionary
 chars, counts = zip(*count_pairs)
 vocab = dict(zip(chars, range(len(chars))))
-print ("Type of 'chars' is %s and length is %d" 
-    % (type(chars), len(chars))) 
+print ("Type of 'chars' is %s and length is %d"
+    % (type(chars), len(chars)))
 for i in range(5):
     print ("[%d/%d]" % (i, 3)), # <= This comma remove '\n'
     print ("chars[%d] is '%s'" % (i, chars[i]))
-    
+
 print ("")
 
-print ("Type of 'vocab' is %s and length is %d" 
-    % (type(vocab), len(vocab))) 
+print ("Type of 'vocab' is %s and length is %d"
+    % (type(vocab), len(vocab)))
 for i in range(5):
     print ("[%d/%d]" % (i, 3)), # <= This comma remove '\n'
     print ("vocab['%s'] is %s" % (chars[i], vocab[chars[i]]))
-    
+
 # SAve chars and vocab
 with open(os.path.join(save_dir, 'chars_vocab.pkl'), 'wb') as f:
     cPickle.dump((chars, vocab), f)
 ```
 
 ---
-## Make Dictionary and Vocabulary. 
+## Make Dictionary and Vocabulary.
 
 - Map Character to digit (index)
 
@@ -735,16 +734,16 @@ Type of 'vocab' is <type 'dict'> and length is 99
 
 ```python
 
-# Now convert all text to index using vocab! 
+# Now convert all text to index using vocab!
 corpus = np.array(list(map(vocab.get, data)))
-print ("Type of 'corpus' is %s, shape is %s, and length is %d" 
+print ("Type of 'corpus' is %s, shape is %s, and length is %d"
     % (type(corpus), corpus.shape, len(corpus)))
 
 check_len = 10
 print ("\n'corpus' looks like %s" % (corpus[0:check_len]))
 for i in range(check_len):
     _wordidx = corpus[i]
-    print ("[%d/%d] chars[%02d] corresponds to '%s'" 
+    print ("[%d/%d] chars[%02d] corresponds to '%s'"
            % (i, check_len, _wordidx, chars[_wordidx]))
 ```
 
@@ -760,7 +759,7 @@ Type of 'corpus' is <type 'numpy.ndarray'>, shape is (1708871,), and length is 1
 ## Generate Batch data
 
 ```python
-# Generate batch data 
+# Generate batch data
 batch_size  = 50
 seq_length  = 200
 num_batches = int(corpus.size / (batch_size * seq_length))
@@ -784,10 +783,10 @@ Type of 'temp[0]' is <type 'numpy.ndarray'> and shape is (50, 200)
 ```
 
 ---
-## Now, we are ready to make our RNN model 
+## Now, we are ready to make our RNN model
 
 ```python
-# Important RNN parameters 
+# Important RNN parameters
 vocab_size = len(vocab)
 rnn_size   = 128
 num_layers = 2
@@ -800,7 +799,7 @@ cell = tf.contrib.rnn.MultiRNNCell([unit_cell() for _ in range(num_layers)])
 input_data = tf.placeholder(tf.int32, [batch_size, seq_length])
 targets    = tf.placeholder(tf.int32, [batch_size, seq_length])
 istate     = cell.zero_state(batch_size, tf.float32)
-# Weigths 
+# Weigths
 with tf.variable_scope('rnnlm'):
     softmax_w = tf.get_variable("softmax_w", [rnn_size, vocab_size])
     softmax_b = tf.get_variable("softmax_b", [vocab_size])
@@ -820,7 +819,7 @@ def loop(prev, _):
     loop_function: If not None, this function will be applied to the i-th output
     in order to generate the i+1-st input, and decoder_inputs will be ignored,
     except for the first element ("GO" symbol).
-""" 
+"""
 outputs, last_state = tf.contrib.rnn.static_rnn(cell, inputs, istate
                 , scope='rnnlm')
 output = tf.reshape(tf.concat(outputs, 1), [-1, rnn_size])
@@ -829,7 +828,7 @@ probs  = tf.nn.softmax(logits)
 # Loss
 loss = tf.contrib.legacy_seq2seq.sequence_loss_by_example([logits], # Input
     [tf.reshape(targets, [-1])], # Target
-    [tf.ones([batch_size * seq_length])], # Weight 
+    [tf.ones([batch_size * seq_length])], # Weight
     vocab_size)
 # Optimizer
 cost     = tf.reduce_sum(loss) / batch_size / seq_length
@@ -894,7 +893,7 @@ for char in prime[:-1]:
 
 # Sample 'num' characters
 ret  = prime
-char = prime[-1] # <= This goes IN! 
+char = prime[-1] # <= This goes IN!
 num  = 1000
 ```
 ---
@@ -904,18 +903,18 @@ for n in range(num):
     x[0, 0] = vocab[char]
     [probsval, state] = sess.run([probs, last_state]
         , feed_dict={input_data: x, istate:state})
-    p      = probsval[0] 
-    
+    p      = probsval[0]
+
     sample = weighted_pick(p)
     # sample = np.argmax(p)
-    
+
     pred   = chars[sample]
     ret    = ret + pred
     char   = pred
 ```
 
 ```
-Sampling Done. 
+Sampling Done.
 ___________________________________________
 
 /* struct auditued oq,
@@ -933,7 +932,7 @@ void sysctl_sched_kobjed(&watchdalleep_state, int sys_timk_ops, *mask, struct fi
 
 ## More results
 - Latex generation. The resulting sampled Latex almost compiles.
- 
+
 .center.img-100[![](images/rl/latex3.png)]
 
 .footnote[(Image credit: Karpathy’s blog)]
@@ -986,7 +985,7 @@ template: inverse
 import chardet # https://github.com/chardet/chardet
 from TextLoader import *
 from Hangulpy import *
-print ("PACKAGES LOADED") 
+print ("PACKAGES LOADED")
 ```
 Conversion Function to utf-8 format
 ```python
@@ -1025,14 +1024,14 @@ print (" [%s] IS GENERATED" % (tofile))
 
 ```python
 def dump_file(filename):
-    result=u"" # <= UNICODE STRING 
+    result=u"" # <= UNICODE STRING
     with codecs.open(filename,"r", encoding="UTF8") as f:
         for line in f.readlines():
             line = tuple(line)
 *           result = result + decompose_text(line)
     return result
 
-parsed_txt = dump_file(tofile).encode("utf8") 
+parsed_txt = dump_file(tofile).encode("utf8")
 ```
 
 ```
@@ -1084,21 +1083,21 @@ x, y = data_loader.next_batch()
 
 ```
 Type of 'x' is <type 'numpy.ndarray'>. Shape is (50, 50)
-x looks like 
+x looks like
 [[ 7  6  1 ...,  3  0 37]
  [15 18  0 ...,  0 19  3]
  [38  3  0 ..., 61 50  7]
- ..., 
+ ...,
  [ 0  5  3 ...,  0  2 21]
  [ 8  0  2 ..., 12  5  0]
  [ 3  1  0 ..., 21 12  0]]
 
 Type of 'y' is <type 'numpy.ndarray'>. Shape is (50, 50)
-y looks like 
+y looks like
 [[ 6  1 20 ...,  0 37  7]
  [18  0  5 ..., 19  3  4]
  [ 3  0  2 ..., 50  7  6]
- ..., 
+ ...,
  [ 5  3  0 ...,  2 21 12]
  [ 0  2 19 ...,  5  0 15]
  [ 1  0  1 ..., 12  0 11]]
@@ -1140,7 +1139,7 @@ print ("Network ready")
 
 ```python
 # Output of RNN
-outputs, last_state = tf.contrib.rnn.static_rnn(cell,inputs, initial_state, 
+outputs, last_state = tf.contrib.rnn.static_rnn(cell,inputs, initial_state,
                                                 scope='rnnlm')
 
 output = tf.reshape(tf.concat(outputs,1), [-1, rnn_size])
@@ -1167,8 +1166,8 @@ print ("LOSS FUNCTION")
 ```python
 cost = tf.reduce_sum(loss) / batch_size / seq_length
 
-# GRADIENT CLIPPING ! 
-lr = tf.Variable(0.0, trainable=False) # <= LEARNING RATE 
+# GRADIENT CLIPPING !
+lr = tf.Variable(0.0, trainable=False) # <= LEARNING RATE
 tvars = tf.trainable_variables()
 grads, _ = tf.clip_by_global_norm(tf.gradients(cost, tvars), grad_clip)
 _optm = tf.train.AdamOptimizer(lr)
@@ -1201,7 +1200,7 @@ summary_writer = tf.summary.FileWriter(save_dir
                     , graph=sess.graph)
 saver = tf.train.Saver(tf.all_variables())
 for e in range(num_epochs): # for all epochs
-    # LEARNING RATE SCHEDULING 
+    # LEARNING RATE SCHEDULING
     sess.run(tf.assign(lr, learning_rate * (decay_rate ** e)))
 
     data_loader.reset_batch_pointer()
@@ -1213,9 +1212,9 @@ for e in range(num_epochs): # for all epochs
         # Train!
         train_loss, state, _ = sess.run([cost, final_state, optm], feed)
         end = time.time()
-        # PRINT 
+        # PRINT
         if b % 100 == 0:
-            print ("%d/%d (epoch: %d), loss: %.3f, time/batch: %.3f"  
+            print ("%d/%d (epoch: %d), loss: %.3f, time/batch: %.3f"
                    % (e * data_loader.num_batches + b
                     , num_epochs * data_loader.num_batches
                     , e, train_loss, end - start))
@@ -1240,18 +1239,18 @@ data_dir    = "data/" + corpus_name
 batch_size  = 10
 seq_length  = 100
 data_loader = TextLoader(data_dir, batch_size, seq_length)
-# This makes "vocab.pkl" and "data.npy" in "data/nine_dreams"   
-#  from "data/nine_dreams/input.txt" 
+# This makes "vocab.pkl" and "data.npy" in "data/nine_dreams"
+#  from "data/nine_dreams/input.txt"
 vocab_size = data_loader.vocab_size
 vocab = data_loader.vocab
 chars = data_loader.chars
-print ( "type of 'data_loader' is %s, length is %d" 
+print ( "type of 'data_loader' is %s, length is %d"
        % (type(data_loader.vocab), len(data_loader.vocab)) )
 print ( "\n" )
 print ("data_loader.vocab looks like \n%s " %
        (data_loader.vocab))
 print ( "\n" )
-print ( "type of 'data_loader.chars' is %s, length is %d" 
+print ( "type of 'data_loader.chars' is %s, length is %d"
        % (type(data_loader.chars), len(data_loader.chars)) )
 print ( "\n" )
 print ("data_loader.chars looks like \n%s " % (data_loader.chars,))
@@ -1272,7 +1271,7 @@ def sample( sess, chars, vocab, __probs, num=200, prime=u'ㅇㅗᴥㄴㅡㄹᴥ 
         [state] = sess.run([last_state], feed)
 
     def weighted_pick(weights):
-        weights = weights / np.sum(weights) 
+        weights = weights / np.sum(weights)
         t = np.cumsum(weights)
         s = np.sum(weights)
         return(int(np.searchsorted(t, np.random.rand(1)*s)))
@@ -1331,19 +1330,19 @@ if ckpt and ckpt.model_checkpoint_path:
 - Step 2500
 
 ```
-투명드래곤 선봇랐터 조노 눅웅가다 가다망어흔 
+투명드래곤 선봇랐터 조노 눅웅가다 가다망어흔
 
  즈시가 진장간 타어져 질롱해드름대 뒤크은 그기각드어레 무됨데~?~
 
-수저질개널 진따 은이얼에주야나틔ㅕㅏㅆ다!. 
+수저질개널 진따 은이얼에주야나틔ㅕㅏㅆ다!.
 
 "투명드래곤오 시봑임언당.
 
 
-뚜크이~!!! 
+뚜크이~!!!
 
 티멍드른곤언 셚ㄱㅂㄹ에 수대아오가젹핵말타 숙테몋에 ?~
-삽승 때개근! 
+삽승 때개근!
 
 셰복 막5ㅋ~ㄹㅋㄱ 바터리자기짬툐 투명드래곤았본비잇다
 야 처차들을 이개이사 하누빠니리 실낵나가 함산의 지치 망"
@@ -1358,15 +1357,15 @@ if ckpt and ckpt.model_checkpoint_path:
 "케케케케"
 바겹지가 적대시 쪼 굓굖
 
-하지묀... 
+하지묀...
 
 나항 졸라 중남을 쳐참다
-쾰여냐! 넌 니제 고치돵이로 날아조함네 굖굖교 
+쾰여냐! 넌 니제 고치돵이로 날아조함네 굖굖교
 
 "이전. 제계볼뽀태 이죄가끄케"
 퐈싼히하들만 투명드래곤이...
 
-꼐속 
+꼐속
 ```
 
 ---
@@ -1375,30 +1374,30 @@ if ckpt and ckpt.model_checkpoint_path:
 - Set .red[corpus_name] variable to 'nine_dreams' dataset.
   - Both train and inference scripts.
 - Let's download any text data and try to train RNN!
-- Larger corpus gives better result. But training time is much longer. 
+- Larger corpus gives better result. But training time is much longer.
 ---
 ## Inference Result - nine_dreams
 - Epoch 99000
 
 ```
-오늘 미엿한 즉기고치를 면파지 못하고 마침께 수량궁처래마마)에 
-분행하니 부처님께서는 소유가 시녀 들어가 재주를 
-만나니 말을 건골이도, 양한림의 천재 다만의 암을 물함과 세 살이 술있다 남이 
-금강제의 슬픔을 떨치어 꽃고 진생을 따라가섰다. 
-  "시비 크게 연화봉으로 돌아와 감화록 선비의 소설해지고 이 노후의 공중을 서서함이 도적을 치었다. 
+오늘 미엿한 즉기고치를 면파지 못하고 마침께 수량궁처래마마)에
+분행하니 부처님께서는 소유가 시녀 들어가 재주를
+만나니 말을 건골이도, 양한림의 천재 다만의 암을 물함과 세 살이 술있다 남이
+금강제의 슬픔을 떨치어 꽃고 진생을 따라가섰다.
+  "시비 크게 연화봉으로 돌아와 감화록 선비의 소설해지고 이 노후의 공중을 서서함이 도적을 치었다.
   양한림이 칵을 수 일면서 의심하였나이다."
-  양원수가 들으려 다시 중에서는 내전하를 부적없이를 언제하여 계랑과 더불어 딸이 들와 돌아밫히 여찌하고 황상께서 나음을 마침내 
+  양원수가 들으려 다시 중에서는 내전하를 부적없이를 언제하여 계랑과 더불어 딸이 들와 돌아밫히 여찌하고 황상께서 나음을 마침내
 꾸짖어서 펴로 어떱게 여겨 공경에 지방 읊으셨으니 어찌(삼 되는 말이옵니까?"
   이를 경공자들이 참은케 눌러져기 크리리오?"
-  하고, 이곳으로벼 생각하며 눈우면제신 1틍해 배색가룰맘이 어찌 위남여 도리에서는 
-크게 궁기쁜 두 구성과 더불어 가처를 감추고 
-있었다. 
-  두 시뱅과 정소저, 전교, 조정이 백릉 둘이 궁경에는 아생과 더불어 
-가하로자 생각하시기에 낭자가 이미 족자리로 보여 있는데 손을 잡시 명세코 별 한 손)을 듣고노며, 
+  하고, 이곳으로벼 생각하며 눈우면제신 1틍해 배색가룰맘이 어찌 위남여 도리에서는
+크게 궁기쁜 두 구성과 더불어 가처를 감추고
+있었다.
+  두 시뱅과 정소저, 전교, 조정이 백릉 둘이 궁경에는 아생과 더불어
+가하로자 생각하시기에 낭자가 이미 족자리로 보여 있는데 손을 잡시 명세코 별 한 손)을 듣고노며,
 한림은 여중 곹오는 사음에 침녀 무매로다 인사들이 대사께 돌아가도록 하라."
   이 아가서는 새 돛아오니, 어찌 가히 변천학장, 해로다."
-  하는데, 전일에 용명을 튼 보해하며 가약을 이루거늘 말하기 
-대부인을 목안하샀던 것에 그 뮤은 꿇어였다. 
+  하는데, 전일에 용명을 튼 보해하며 가약을 이루거늘 말하기
+대부인을 목안하샀던 것에 그 뮤은 꿇어였다.
 
 ```
 
